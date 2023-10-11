@@ -14,4 +14,6 @@ def quickshort(lista):
 
 arreglo_desordenado = [42, 17, 8, 33, 55, 20, 1, 99, 10, 5]
 arreglo_ordenado = quickshort(arreglo_desordenado)
+print(arreglo_desordenado)
 print(arreglo_ordenado)
+
