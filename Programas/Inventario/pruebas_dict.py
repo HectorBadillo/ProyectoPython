@@ -1,20 +1,3 @@
-diccionario = {'c1':'valor1','c2':'valor2'}
-resultado = diccionario['c1']
-print(diccionario['c1'])
-
-def agregar_diccionario(dic_principal, clave, dic_secundario):
-    dic_principal[clave] = dic_secundario
-
-# Ejemplo de uso:
-diccionario_principal = {}
-diccionario_secundario1 = {'nombre': 'Juan', 'edad': 25}
-diccionario_secundario2 = {'nombre': 'María', 'edad': 30}
-
-agregar_diccionario(diccionario_principal, 'persona1', diccionario_secundario1)
-agregar_diccionario(diccionario_principal, 'persona2', diccionario_secundario2)
-
-print(diccionario_principal)
-
 def agregar_diccionarios(diccionario_objetivo, *diccionarios_a_agregar):
     for diccionario in diccionarios_a_agregar:
         print(f'Agregado: {diccionario['nombre']}')
@@ -30,3 +13,5 @@ agregar_diccionarios(mi_dict, producto1, producto2, producto3)
 
 # Imprimimos mi_dict
 print(mi_dict)
+prueba = input('Hola:').lower()
+print(prueba)

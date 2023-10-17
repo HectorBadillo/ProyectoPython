@@ -29,7 +29,8 @@ class AdministradorProductos:
             status = str(input('Estado: '))
 
             producto_obj = Producto(nombre, marca, sku, categoria, precio,status)
-
+            print(producto_obj.__dict__)
+            
         elif opcion == 2:
             pass
         else:
@@ -48,3 +49,16 @@ while(opc != 4):
     print('3.Generar informe\n')
     print('4.Salir\n')
     opc = int(input('Opcion: '))
+   
+    match opc:
+        case 1:
+            print("Agregar Producto")
+            administracion_obj.flujo_inventario(opc)
+        case 2:
+            print("Elimiar Producto")
+        case 3:
+            print("Generar informe")
+        case 4:
+            print("Hasta pronto")
+        case _:
+            print("Opcion no encontrada")
