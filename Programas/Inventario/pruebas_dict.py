@@ -13,5 +13,6 @@ agregar_diccionarios(mi_dict, producto1, producto2, producto3)
 
 # Imprimimos mi_dict
 print(mi_dict)
-prueba = input('Hola:').lower()
-print(prueba)
+
+for elemento in mi_dict:
+    print(elemento)
