@@ -1,4 +1,7 @@
 class MiIterador:
+    """Generare un iterador
+    regresivo
+    """
     def __init__(self, limite):
         self.limite = limite
 
@@ -17,6 +20,9 @@ for elemento in mi_iterador:
     print(elemento)
 
 class MiIterador:
+    """Genero un iterador
+    suscesivo
+    """
     def __init__(self, limite):
         self.limite = limite
         self.valor = 0
