@@ -2,6 +2,7 @@ class Producto:
     """La clase definira todos los
     atributos que tenga un producto
     """
+
     def __init__(
         self,
         nombre: str,
@@ -131,9 +132,7 @@ class AdministradorProductos:
 opc = 0
 dict_prod_disp = {}
 dict_prod_no_disp = {}
-administracion_obj = AdministradorProductos(
-    dict_prod_disp, dict_prod_no_disp
-)
+administracion_obj = AdministradorProductos(dict_prod_disp, dict_prod_no_disp)
 
 while opc != 4:
     print("\tMENU")
