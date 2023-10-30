@@ -49,15 +49,18 @@ class CatalogoLibros:
     def editar_status(self, titulo: str, nuevo_status: bool):
         for libro in self.libros:
             if libro.titulo == titulo:
-                libro.status = nuevo_status
-                return True  # Indica que se realizó la edición con éxito
-        return False  # Indica que el libro no se encontró
+                if libro.status != nuevo_status:
+                    libro.status = nuevo_status
+                    return True  
+        return False
     
 
     def eliminar_libro(self, titulo:str):
         for libro in self.libros:
             if libro.titulo == titulo:
                 self.libros.remove(libro)
+                return True
+        return False
 
 
     def mostrar_catalogo(self):
@@ -81,17 +84,20 @@ class UsuarioCliente:
                 return True
         print("Libro no encontrado.")
         return False
-    
+
     def prestamo_libro(self, catalogo:CatalogoLibros, titulo:str):
         if catalogo.editar_status(titulo,False):
             print("Libro prestado")
-                
+        else:
+            print("No se puede prestar el libro.")
 
 
     def devolver_libro(self, catalogo:CatalogoLibros, titulo:str):
         if self.buscar_libro(catalogo,titulo):
             if catalogo.editar_status(titulo,True):
                 print("Libro devuelto")
+            else:
+                print("No se puede devolver el libro")
 
 
     @property
@@ -124,6 +130,62 @@ class UsuarioCliente:
     @telefono.setter
     def telefono(self, nuevo_telefono):
         self._telefono = nuevo_telefono
+
+
+
+class UsuarioAdministrador:
+    def __init__(self, nombre: str, usuario: str, password: str, id_empleado: int) -> None:
+        self._nombre = nombre
+        self._usuario = usuario
+        self._password = password
+        self._id_empleado = id_empleado
+
+    def agregar_libro(self, catalogo:CatalogoLibros):
+        titulo = input("Titulo: ")
+        autor = input("Autor: ")
+        libro_nuevo = Libro(titulo, autor, True)
+        catalogo.libros.append(libro_nuevo)
+
+
+    def eliminar_libro(self, catalogo:CatalogoLibros, titulo:str):
+        if catalogo.eliminar_libro(titulo):
+            print("Libro Eliminado")
+        else:
+            print("Libro no encontrado")
+    
+    def mostrar_libros(self, catalogo:CatalogoLibros):
+            catalogo.mostrar_catalogo()
+
+    @property
+    def nombre(self):
+        return self._nombre
+    @nombre.setter
+    def nombre(self, nuevo_nombre):
+        self._nombre = nuevo_nombre
+
+
+    @property
+    def usuario(self):
+        return self._usuario
+    @usuario.setter
+    def usuario(self, nuevo_usuario):
+        self._usuario = nuevo_usuario
+
+
+    @property
+    def password(self):
+        return self._password
+    @password.setter
+    def password(self, nueva_password):
+        self._password = nueva_password
+
+
+    @property
+    def id_empleado(self):
+        return self._id_empleado
+    @id_empleado.setter
+    def id_empleado(self, nuevo_id_empleado):
+        self._id_empleado = nuevo_id_empleado
 
 # Crear una instancia del catálogo de libros
 catalogo = CatalogoLibros()
@@ -165,3 +227,9 @@ usuario.prestamo_libro(catalogo,titulo_buscado)
 print("\nDevolucion")
 usuario.devolver_libro(catalogo,titulo_buscado)
 usuario.buscar_libro(catalogo,titulo_buscado)
+usuario.devolver_libro(catalogo,titulo_buscado)
+
+print("\nEliminar Libro")
+administrador = UsuarioAdministrador("Admin","Admin 1","contraseña",123456)
+administrador.eliminar_libro(catalogo,titulo_buscado)
+administrador.mostrar_libros(catalogo)
