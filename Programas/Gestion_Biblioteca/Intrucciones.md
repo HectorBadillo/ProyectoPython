@@ -1,4 +1,4 @@
-# Hector Francisco Badillo Dominguez
+# [Hector Francisco Badillo Dominguez](https://github.com/HectorBadillo)
 ## _Examen Programacion orientada a objetos_
 ## Biblioteca
 El programa es una gestion de biblioteca y funcionara iniciando sesion de 2 formas: como cliente o como administrador.
