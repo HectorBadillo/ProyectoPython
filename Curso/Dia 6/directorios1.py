@@ -30,3 +30,10 @@ otro_archivo = open("C:\\Users\\psbad\\OneDrive\\Documentos\\Visual Studio Code\
 print(otro_archivo.read())
 print("_______________________________________________\n")
 
+elemento = os.path.basename(ruta)
+print(elemento)
+elemento = os.path.dirname(ruta)
+print(elemento)
+elemento = os.path.split(ruta)
+print(elemento)
+
