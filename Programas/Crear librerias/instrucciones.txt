@@ -1,0 +1,15 @@
+el setup.py crea librerias
+pip install setuptools wheel
+python3 setup.py bdist_wheel (carpeta .whl)
+pip install "nombre".whl
+
+
+
+setup.py:
+from setuptools import setup, find_packages
+setup(name = "nombre_de_libreria", version = "version numeria", packages = find_packages())
+
+Todo a la misma altura la carpeta de la libreria y el setup.py
+
+carpeta de libreria:
+__init__.py (vacio)

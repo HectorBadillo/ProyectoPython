@@ -1,0 +1,6 @@
+setup.py
+libreria/__init__.py
+libreria.egg-info/PKG-INFO
+libreria.egg-info/SOURCES.txt
+libreria.egg-info/dependency_links.txt
+libreria.egg-info/top_level.txt
