@@ -134,7 +134,9 @@ class Banco:
 
 banamex = Banco()
 
-'''cliente1 = Cliente("Juan", "Perez", "1990-05-15", "juan@example.com", "555-1234", "clave123", 1001, 1500.0)
+'''
+banamex.generar_csv_clientes()
+cliente1 = Cliente("Juan", "Perez", "1990-05-15", "juan@example.com", "555-1234", "clave123", 1001, 1500.0)
 cliente2 = Cliente("Maria", "Gomez", "1985-08-22", "maria@example.com", "555-5678", "contraseña456", 1002, 2000.0)
 cliente3 = Cliente("Carlos", "Lopez", "1978-11-10", "carlos@example.com", "555-9876", "secreto789", 1003, 3000.0)
 cliente4 = Cliente("Laura", "Garcia", "1995-03-28", "laura@example.com", "555-4321", "clave123", 1004, 2500.0)
@@ -145,8 +147,8 @@ for cliente in lista:
     df = banamex.registrar_cliente(cliente,df)'''
 
 df, diccionario_personas = banamex.lectura_clientes()
-cliente = diccionario_personas[1001]
-
+cliente = diccionario_personas[1001]        #Selecciono un cliente
+#Modifico el cliente seleccionado
 cliente.nombre = 'Hector'
 cliente.apellido = 'Badillo'
 df = banamex.guardar_mov_cliente(cliente,df)
