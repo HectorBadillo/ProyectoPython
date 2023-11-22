@@ -1,7 +1,7 @@
 from pathlib import Path, PureWindowsPath
 #Para cualquier sistema operativo
 carpeta = Path("C:/Users/psbad/OneDrive/Documentos/Visual Studio Code/Proyecto Python/Curso/Dia 1/Prueba_Dia_6.txt")
-
+print(carpeta)
 print(carpeta.read_text())
 print("____________________________________\n")
 
