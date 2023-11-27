@@ -6,25 +6,26 @@ from pathlib import Path
 ruta_ejecutivos = Path(Path.home(), "registro_ejecutivos.csv")
 ruta_clientes = Path(Path.home(), "registro_clientes.csv")
 
-
 class Banco:
-
-    @staticmethod
     def generar_csv_clientes():
-        # Crear un DataFrame con la información de los clientes
-        data = {'Nombre': [],
-                'Apellido': [],
-                'Fecha': [],
-                'Correo': [],
-                'Telefono': [],
-                'Contrasenia': [],
-                'Numero_Cuenta': [],
-                'Saldo': [],
-                'Apartado':[]}
-        df_cliente = pd.DataFrame(data)
-        df_cliente.to_csv(ruta_clientes, index = False)
-        print(type(df_cliente))
-        return df_cliente
+        # Comprueba si el archivo de clientes existe
+        if not ruta_clientes.exists():
+            # Si no existe, crea un DataFrame con la estructura deseada
+            data = {'Nombre': [],
+                    'Apellido': [],
+                    'Fecha': [],
+                    'Correo': [],
+                    'Telefono': [],
+                    'Contrasenia': [],
+                    'Numero_Cuenta': [],
+                    'Saldo': [],
+                    'Apartado':[]}
+            df_cliente = pd.DataFrame(data)
+            # Guarda el DataFrame en un archivo CSV
+            df_cliente.to_csv(ruta_clientes, index=False)
+            print("Archivo CSV de clientes creado.")
+        else:
+            print("El archivo CSV de clientes ya existe.")
     
     @staticmethod
     def registrar_cliente(usuario:Cliente, df_cliente:pd):
@@ -92,22 +93,25 @@ class Banco:
         df_ejecutivo.to_csv(ruta_clientes, index=False)
         return df_ejecutivo
 
-    @staticmethod
     def generar_csv_ejecutivos():
-        # Crear un DataFrame con la información de los ejecutivos
-        data = {'Nombre': [],
-                'Apellido': [],
-                'Fecha': [],
-                'Correo': [],
-                'Telefono': [],
-                'Contrasenia': [],
-                'Numero_Cuenta': [],
-                'Puesto': [],
-                'Sucursal': []}
-        df_ejecutivo = pd.DataFrame(data)
-        df_ejecutivo.to_csv(ruta_ejecutivos, index = False)
-        print(type(df_ejecutivo))
-        return df_ejecutivo
+        # Comprueba si el archivo de ejecutivos existe
+        if not ruta_ejecutivos.exists():
+            # Si no existe, crea un DataFrame con la estructura deseada
+            data = {'Nombre': [],
+                    'Apellido': [],
+                    'Fecha': [],
+                    'Correo': [],
+                    'Telefono': [],
+                    'Contrasenia': [],
+                    'Numero_Cuenta': [],
+                    'Puesto': [],
+                    'Sucursal': []}
+            df_ejecutivo = pd.DataFrame(data)
+            # Guarda el DataFrame en un archivo CSV
+            df_ejecutivo.to_csv(ruta_ejecutivos, index=False)
+            print("Archivo CSV de ejecutivos creado.")
+        else:
+            print("El archivo CSV de ejecutivos ya existe.")
     
     @staticmethod
     def registrar_ejecutivo(usuario:Ejecutivo, df_ejecutivo:pd):
@@ -167,6 +171,7 @@ class Banco:
     def guardar_ejecutivos(df_ejecutivos):
         df_ejecutivos.to_csv(ruta_ejecutivos, index=False)
         
-
+Banco.generar_csv_clientes()
+Banco.generar_csv_ejecutivos()
 df_cliente_global, diccionario_clientes = Banco.lectura_clientes()
 df_ejecutivo_global, diccionario_ejecutivos = Banco.lectura_ejecutivos()
