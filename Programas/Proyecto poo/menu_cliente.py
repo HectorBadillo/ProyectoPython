@@ -1,12 +1,18 @@
 from Banco import *
 
 
-
 class MenuCliente:
+    """Menu al que solo los clientes tendran acceso
+    """
     def __init__(self, usuario: Cliente):
         self.usuario = usuario
 
     def menucliente(self):
+        """Menu
+
+        Raises:
+            ValueError: Para que el usuario no ingrese opciones invalidas
+        """
         global df_cliente_global
         print(f"Hola de vuelta, {self.usuario.nombre}")
         while True:
@@ -21,7 +27,7 @@ class MenuCliente:
             print("8. Salir.")
             try:
                 opcion = int(input("Ingrese la acción a realizar: "))
-                if opcion not in [1, 2, 3, 4, 5, 6, 7,8]:
+                if opcion not in [1, 2, 3, 4, 5, 6, 7, 8]:
                     raise ValueError
             except ValueError:
                 print("Esa no es una opción válida.")
@@ -44,7 +50,7 @@ class MenuCliente:
             elif opcion == 8:
                 print("\nSaliendo del menú...")
                 Banco.guardar_clientes(df_cliente_global)
-                
+
                 break
 
     def consultar_saldo(self):
@@ -57,14 +63,16 @@ class MenuCliente:
             if cantidad <= 0 or cantidad > self.usuario.saldo:
                 raise ValueError("Cantidad inválida.")
             self.usuario.saldo -= cantidad
-            self.usuario.apartado += cantidad 
-            print(f"Se han apartado {cantidad} con éxito. Saldo actual: {self.usuario.saldo}")
-            df_cliente_global = Banco.guardar_mov_cliente(self.usuario, df_cliente_global)
+            self.usuario.apartado += cantidad
+            print(
+                f"Se han apartado {cantidad} con éxito. Saldo actual: {self.usuario.saldo}"
+            )
+            df_cliente_global = Banco.guardar_mov_cliente(
+                self.usuario, df_cliente_global
+            )
 
-            
         except ValueError as e:
             print(e)
-            
 
     def transferir(self):
         global df_cliente_global
@@ -74,17 +82,23 @@ class MenuCliente:
             if cantidad <= 0 or cantidad > self.usuario.saldo:
                 raise ValueError("Cantidad inválida.")
 
-            cliente_destino = diccionario_clientes[cuenta_destino]  
+            cliente_destino = diccionario_clientes[cuenta_destino]
             if cliente_destino is None:
                 raise ValueError("La cuenta destino no existe.")
 
             self.usuario.saldo -= cantidad
             cliente_destino.saldo += cantidad
-            print(f"Transferencia exitosa de {cantidad} a la cuenta {cuenta_destino}. Saldo actual: {self.usuario.saldo}")
+            print(
+                f"Transferencia exitosa de {cantidad} a la cuenta {cuenta_destino}. Saldo actual: {self.usuario.saldo}"
+            )
 
             # Actualizar los datos en los CSV
-            df_cliente_global = Banco.guardar_mov_cliente(self.usuario, df_cliente_global)
-            df_cliente_global = Banco.guardar_mov_cliente(cliente_destino, df_cliente_global)
+            df_cliente_global = Banco.guardar_mov_cliente(
+                self.usuario, df_cliente_global
+            )
+            df_cliente_global = Banco.guardar_mov_cliente(
+                cliente_destino, df_cliente_global
+            )
 
         except ValueError as e:
             print(e)
@@ -106,7 +120,9 @@ class MenuCliente:
         print("5. Contraseña")
 
         try:
-            opcion = int(input("Seleccione el número del campo que desea modificar (1-5): "))
+            opcion = int(
+                input("Seleccione el número del campo que desea modificar (1-5): ")
+            )
             if opcion not in [1, 2, 3, 4, 5]:
                 raise ValueError
 
@@ -120,23 +136,23 @@ class MenuCliente:
             elif opcion == 4:
                 self.usuario.telefono = nuevo_valor
             elif opcion == 5:
-                self.usuario.contrasenia = nuevo_valor  
-            
-            df_cliente_global = Banco.guardar_mov_cliente(self.usuario, df_cliente_global)
+                self.usuario.contrasenia = nuevo_valor
+
+            df_cliente_global = Banco.guardar_mov_cliente(
+                self.usuario, df_cliente_global
+            )
 
         except ValueError:
             print("Opción no válida. No se realizó ninguna modificación.")
-    
+
     def depositar_dinero(self):
         global df_cliente_global
         deposito = float(input("Ingrese la cantidad a depositar: "))
-        self.usuario.saldo += deposito 
+        self.usuario.saldo += deposito
         df_cliente_global = Banco.guardar_mov_cliente(self.usuario, df_cliente_global)
-
 
     def retirar_dinero(self):
         global df_cliente_global
         retiro = float(input("Ingrese la cantidad a retirar: "))
         self.usuario.saldo -= retiro
         df_cliente_global = Banco.guardar_mov_cliente(self.usuario, df_cliente_global)
-
