@@ -5,7 +5,7 @@ import datetime
 import time
 import math
 
-ruta = Path('C:/Users/psbad/OneDrive/Documentos/Visual Studio Code/Proyecto Python/Curso/Dia 9/Proyecto_descomprimido/Mi_Gran_Directorio')
+ruta = Path('C:/Users/psbad/OneDrive/Documentos/Dev/Visual Studio Code/ProyectoPython/Curso/Dia 9/Proyecto_descomprimido/Mi_Gran_Directorio')
 formato = r"N\D{3}-\d{5}"
 
 
