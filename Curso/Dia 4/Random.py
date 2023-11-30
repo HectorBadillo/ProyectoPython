@@ -5,7 +5,7 @@ from random import *
 
 aleatorio = randint(1,50)
 print(aleatorio)
-
+print("_____________________________")
 aleatorio = round(uniform(1,5),1)
 print(aleatorio)
 
